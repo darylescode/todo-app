@@ -18,13 +18,13 @@ function Draggable(props: {
   });
 
   return (
-    <li
+    <div
       ref={setNodeRef}
       {...listeners}
       {...attributes}
     >
       {props.children}
-    </li>
+    </div>
   );
 }
 
