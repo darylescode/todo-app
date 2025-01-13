@@ -1,11 +1,10 @@
 // vite.config.ts
 import { defineConfig } from "vite";
-import path from "path";
+import { resolve } from "node:path";
 
 export default defineConfig({
+  base: "/",
   resolve: {
-    alias: {
-      "@": path.resolve(path.dirname(new URL(import.meta.url).pathname), "./src"),
-    },
+    alias: [{ find: "@", replacement: resolve(__dirname, "./src") }]
   },
 });
