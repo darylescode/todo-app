@@ -1,14 +1,12 @@
-import Header from "./Header";
-import { Outlet } from "react-router";
+import ModalProviderWrapper from "@/context/modals/ModalProviderWrapper";
+
+import Contents from "./Contents";
 
 function MainLayout() {
   return (
-    <div className="">
-      <Header />
-      <main className="">
-        <Outlet />
-      </main>
-    </div>
+    <ModalProviderWrapper>
+      <Contents />
+    </ModalProviderWrapper>
   );
 }
 
