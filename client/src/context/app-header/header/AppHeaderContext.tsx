@@ -1,11 +1,17 @@
 import { createContext } from "react";
 
-interface AppHeaderContextProps {
-  isHeaderTriggered: boolean;
-  setIsHeaderTriggered: (isHeaderTriggered: boolean) => void;
+export enum HeaderTriggered {
+  create = "CREATE",
+  edit = "EDIT",
+  remove = "REMOVE",
 }
 
-export const AppHeaderContext = createContext<AppHeaderContextProps>({
-  isHeaderTriggered: false,
-  setIsHeaderTriggered: () => {},
+interface IAppHeaderContextProps {
+  headerTriggered: HeaderTriggered;
+  setHeaderTriggered: (value: HeaderTriggered) => void;
+}
+
+export const AppHeaderContext = createContext<IAppHeaderContextProps>({
+  headerTriggered: HeaderTriggered.create,
+  setHeaderTriggered: () => {},
 });

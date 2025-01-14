@@ -1,13 +1,13 @@
-import React from "react";
-import { AppHeaderContext } from "./AppHeaderContext";
+import { useState } from "react";
+import { AppHeaderContext, HeaderTriggered } from "./AppHeaderContext";
 
 function AppHeaderProvider({ children }: React.PropsWithChildren) {
-  const [isHeaderTriggered, setIsHeaderTriggered] = React.useState(false);
+  const [headerTriggered, setHeaderTriggered] = useState<HeaderTriggered>(
+    HeaderTriggered.create
+  );
 
   return (
-    <AppHeaderContext.Provider
-      value={{ isHeaderTriggered, setIsHeaderTriggered }}
-    >
+    <AppHeaderContext.Provider value={{ headerTriggered, setHeaderTriggered }}>
       {children}
     </AppHeaderContext.Provider>
   );

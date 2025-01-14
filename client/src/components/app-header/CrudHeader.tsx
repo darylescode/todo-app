@@ -1,27 +1,26 @@
 import { useContext } from "react";
-import { AppHeaderContext, ConfirmationModalContext } from "@/context";
+import {
+  AppHeaderContext,
+  ConfirmationModalContext,
+  HeaderTriggered,
+} from "@/context";
 
 import { headerActions } from "@/shared/constants/headerActions";
 
 function CrudHeader() {
-  const {
-    isModalOpen,
-    setIsModalOpen,
-  } = useContext(ConfirmationModalContext);
+  const { isModalOpen, setIsModalOpen } = useContext(ConfirmationModalContext);
 
-  const {
-    isHeaderTriggered,
-    setIsHeaderTriggered,
-  } = useContext(AppHeaderContext);
+  const { setHeaderTriggered } = useContext(AppHeaderContext);
 
   const openModalHandler = (imgAlt: string) => {
     if (imgAlt === "create") {
       setIsModalOpen(!isModalOpen);
+      setHeaderTriggered(HeaderTriggered.create);
       return;
     }
 
     if (imgAlt === "edit") {
-      setIsHeaderTriggered(!isHeaderTriggered);
+      setHeaderTriggered(HeaderTriggered.edit);
       return;
     }
 

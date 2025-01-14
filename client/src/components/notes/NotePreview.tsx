@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 
 import { Card, CardContent } from "@/shared/components/ui/card";
-import NoteTitle from "./NoteTitle";
+import NoteTitle from "./note-tile/NoteTitle";
 
 function NotePreview() {
   const params = useParams();

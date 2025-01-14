@@ -13,7 +13,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 
-import NoteCard from "./NoteCard";
+import NoteCard from "./note-card/NoteCard";
 
 import {
   arrayMove,
