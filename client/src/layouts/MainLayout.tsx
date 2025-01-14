@@ -1,12 +1,15 @@
 import ModalProviderWrapper from "@/context/modals/ModalProviderWrapper";
 
 import Contents from "./Contents";
+import { AppHeaderProvider } from "@/context";
 
 function MainLayout() {
   return (
-    <ModalProviderWrapper>
-      <Contents />
-    </ModalProviderWrapper>
+    <AppHeaderProvider>
+      <ModalProviderWrapper>
+        <Contents />
+      </ModalProviderWrapper>
+    </AppHeaderProvider>
   );
 }
 

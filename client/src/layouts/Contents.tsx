@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import { ConfirmationModalContext } from "@/context";
 
-import Header from "./Header";
+import AppHeader from "./AppHeader";
 import CreateNoteModal from "@/shared/modals/CreateNoteModal";
 
 function Contents() {
@@ -11,7 +11,7 @@ function Contents() {
 
   return (
     <div>
-      <Header />
+      <AppHeader />
       <CreateNoteModal
         isModalOpen={isModalOpen}
         onCancel={() => setIsModalOpen(!isModalOpen)}
