@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+
+import { AppHeaderContext } from "@/context";
 
 import NoteTitle from "./NoteTitle";
 import { Card } from "@/shared/components/ui/card";
@@ -11,17 +14,24 @@ interface NoteCardProps {
 
 function NoteCard({ id, className }: NoteCardProps) {
   const navigate = useNavigate();
+  const { isHeaderTriggered } = useContext(AppHeaderContext);
 
   return (
     <MoveWrapper id={id}>
-      <button
-        onClick={() => navigate(`/${id}`)}
-        className={`w-full h-full ${className}`}
-      >
+      {!isHeaderTriggered ? (
+        <button
+          onClick={() => navigate(`/${id}`)}
+          className={`w-full h-full ${className}`}
+        >
+          <Card>
+            <NoteTitle text={`Note ${id}`} />
+          </Card>
+        </button>
+      ) : (
         <Card>
           <NoteTitle text={`Note ${id}`} />
         </Card>
-      </button>
+      )}
     </MoveWrapper>
   );
 }
