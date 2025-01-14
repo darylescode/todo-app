@@ -1,11 +1,7 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { ConfirmationModalContext } from "../../index";
 
-function ConfirmationModalProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function ConfirmationModalProvider({ children }: PropsWithChildren) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

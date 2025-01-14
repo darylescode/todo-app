@@ -1,7 +1,7 @@
-import React from 'react'
+import { PropsWithChildren } from "react";
 import { ConfirmationModalProvider } from "../index";
 
-function ModalProviderWrapper({ children }: { children: React.ReactNode }) {
+function ModalProviderWrapper({ children }: PropsWithChildren) {
   return (
     <ConfirmationModalProvider>
       {children}

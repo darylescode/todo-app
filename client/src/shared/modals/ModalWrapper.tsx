@@ -1,12 +1,15 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 
 interface ModalWrapperProps {
   isModalOpen: boolean;
-  children: React.ReactNode;
   className?: string;
 }
 
-function ModalWrapper({ isModalOpen, children, className }: ModalWrapperProps) {
+function ModalWrapper({
+  isModalOpen,
+  children,
+  className,
+}: PropsWithChildren<ModalWrapperProps>) {
   if (!isModalOpen) return null;
   return (
     <div

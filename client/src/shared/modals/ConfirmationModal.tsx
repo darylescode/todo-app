@@ -1,9 +1,9 @@
+import { PropsWithChildren } from "react";
 import { Button } from "../components/ui/button";
 import ModalWrapper from "./ModalWrapper";
 
 interface IConfirmationModalProps {
   isModalOpen: boolean;
-  children: React.ReactNode;
   cancelText?: string;
   confirmText?: string;
   onConfirm: () => void;
@@ -19,7 +19,7 @@ function ConfirmationModal({
   confirmText = "Confirm",
   onConfirm,
   onCancel,
-}: IConfirmationModalProps) {
+}: PropsWithChildren<IConfirmationModalProps>) {
   return (
     <ModalWrapper isModalOpen={isModalOpen}>
       <div className="bg-white p-4 rounded-lg">
