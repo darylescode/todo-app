@@ -1,4 +1,4 @@
-import { CardHeader } from '../shared/components/ui/card';
+import { CardHeader } from '@/shared/components/ui/card';
 
 function NoteTitle({ text }: { text: string }) {
   return (
