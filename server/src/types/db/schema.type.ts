@@ -13,7 +13,7 @@ export interface Task {
   uuid: Generated<string>;
   todo_uuid: string;
   position: number;
-  status: number;
+  status: boolean;
   text: string;
   created_at: Date | null;
   updated_at: Date | null;
