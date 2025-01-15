@@ -7,10 +7,15 @@ import {
 } from "./app-header/header/AppHeaderContext";
 import AppHeaderProvider from "./app-header/header/AppHeaderProvider";
 
+import { TodoContext } from "./todo/TodoContext";
+import TodoProvider from "./todo/TodoProvider";
+
 export {
   ConfirmationModalContext,
   ConfirmationModalProvider,
   AppHeaderContext,
   HeaderTriggered,
   AppHeaderProvider,
+  TodoContext,
+  TodoProvider,
 };

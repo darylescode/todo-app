@@ -12,7 +12,7 @@ import {
 } from "@dnd-kit/sortable";
 
 import useDndSensors from "@/hooks/useDndSensor";
-import { todoData } from "@/shared/constants/data/todoData";
+import { taskData } from "@/shared/constants/data/taskData";
 
 import TodoCard from "./TodoCard";
 import { CardContent } from "@/shared/components/ui/card";
@@ -21,7 +21,7 @@ function TodoList() {
   const sensors = useDndSensors({ delay: 250, tolerance: 5 });
   const [activeId, setActiveId] = useState<string | null>(null);
   const [todo, setTodo] = useState(
-    todoData.map((item) => ({ ...item, uuid: String(item.uuid) }))
+    taskData.map((item) => ({ ...item, uuid: String(item.uuid) }))
   );
 
   const handleDragStart = (event: DragStartEvent) => {
