@@ -1,3 +1,7 @@
+import { useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { TodoContext } from "@/context";
+
 import ConfirmationModal from "./ConfirmationModal";
 
 interface ICreateNoteModalProps {
@@ -6,9 +10,22 @@ interface ICreateNoteModalProps {
 }
 
 function CreateNoteModal({ isModalOpen, onCancel }: ICreateNoteModalProps) {
+  const { setTodo } = useContext(TodoContext);
+  const [title, setTitle] = useState<string>("");
 
   const confirmHandler = () => {
-    console.log("Note created");
+    setTodo((prev) => [
+      ...prev,
+      {
+        uuid: uuidv4(),
+        title: title,
+        position: prev.length + 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ]);
+
+    onCancel();
   };
 
   return (
@@ -29,8 +46,10 @@ function CreateNoteModal({ isModalOpen, onCancel }: ICreateNoteModalProps) {
               Title
             </label>
             <input
-              type="text"
               id="title"
+              type="text"
+              value={title}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
               className="p-2 border border-gray-300"
             />
           </div>
