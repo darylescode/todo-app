@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useContext } from "react";
 
 import { AppHeaderContext } from "@/context";
@@ -19,17 +20,16 @@ function NoteCard({ id, className }: NoteCardProps) {
     createComponent: (
       <NoteCardButton
         id={id}
-        className={className}
+        className={clsx(
+          "w-full h-full items-stretch bg-white hover:bg-gray-100",
+          className
+        )}
       />
     ),
     editComponent: <NoteCardContent id={id} />,
   });
 
-  return (
-    <MoveWrapper id={id}>
-      {components[headerTriggered]}
-    </MoveWrapper>
-  );
+  return <MoveWrapper id={id}>{components[headerTriggered]}</MoveWrapper>;
 }
 
 export default NoteCard;
