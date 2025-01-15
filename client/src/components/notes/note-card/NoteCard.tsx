@@ -30,6 +30,7 @@ function NoteCard({ todo, className }: NoteCardProps) {
     ),
     editComponent: (
       <NoteCardContent
+        id={todo.uuid}
         title={todo.title}
       />
     ),

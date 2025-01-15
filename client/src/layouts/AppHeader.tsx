@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import { AppHeaderContext } from "@/context";
+import { AppHeaderContext, HeaderTriggered } from "@/context";
 
 import CrudHeader from "@/components/app-header/CrudHeader";
 import ActionHeader from "@/components/app-header/ActionHeader";
 import { generateHeaderComponents } from "@/shared/utils/generateHeaderComponents";
 
 function AppHeader() {
-  const { headerTriggered } = useContext(AppHeaderContext);
+  const { headerTriggered, setHeaderTriggered } = useContext(AppHeaderContext);
 
   const components = generateHeaderComponents({
     createComponent: <CrudHeader />,
@@ -15,7 +15,7 @@ function AppHeader() {
       <ActionHeader
         actionText="Save"
         onAction={() => {
-          console.log("Save action triggered");
+          setHeaderTriggered(HeaderTriggered.create)
         }}
       />
     ),
