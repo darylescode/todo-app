@@ -18,7 +18,7 @@ function CreateNoteModal({ isModalOpen, onCancel }: ICreateNoteModalProps) {
       onCancel={onCancel}
       onConfirm={confirmHandler}
     >
-      <div className="w-80 h-80">
+      <div className="w-80">
         <h1 className="text-2xl font-semibold mb-4">Create a new note</h1>
         <form>
           <div className="flex flex-col mb-4">
@@ -31,18 +31,6 @@ function CreateNoteModal({ isModalOpen, onCancel }: ICreateNoteModalProps) {
             <input
               type="text"
               id="title"
-              className="p-2 border border-gray-300"
-            />
-          </div>
-          <div className="flex flex-col mb-4 h-44">
-            <label
-              htmlFor="content"
-              className="mb-2"
-            >
-              Content
-            </label>
-            <textarea
-              id="content"
               className="p-2 border border-gray-300"
             />
           </div>
