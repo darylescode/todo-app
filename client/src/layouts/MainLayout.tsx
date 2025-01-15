@@ -1,15 +1,19 @@
+import { AppHeaderProvider } from "@/context";
+
+import TodoWrapper from "@/context/todo/TodoWrapper";
 import ModalProviderWrapper from "@/context/modals/ModalProviderWrapper";
 
 import Contents from "./Contents";
-import { AppHeaderProvider } from "@/context";
 
 function MainLayout() {
   return (
-    <AppHeaderProvider>
-      <ModalProviderWrapper>
-        <Contents />
-      </ModalProviderWrapper>
-    </AppHeaderProvider>
+    <TodoWrapper>
+      <AppHeaderProvider>
+        <ModalProviderWrapper>
+          <Contents />
+        </ModalProviderWrapper>
+      </AppHeaderProvider>
+    </TodoWrapper>
   );
 }
 
