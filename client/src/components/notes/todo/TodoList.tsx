@@ -11,22 +11,21 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
+import { TodoContext } from "@/context";
 import useDndSensors from "@/hooks/useDndSensor";
+
+import { ITask } from "@/types/task";
 import { tasksData } from "@/shared/constants/data/taskData";
 
 import TodoCard from "./TodoCard";
 import { CardContent } from "@/shared/components/ui/card";
-import { TodoContext } from "@/context";
-import { ITask } from "@/types/task";
 
 function TodoList() {
   const sensors = useDndSensors({ delay: 250, tolerance: 5 });
   const { selectedTodo } = useContext(TodoContext);
 
-
   const [activeId, setActiveId] = useState<string | null>(null);
   const [todo, setTodo] = useState<ITask[]>([]);
-
 
   useEffect(() => {
     const taskList = tasksData.filter((e) => e.todoUuid === selectedTodo?.uuid);
@@ -53,8 +52,8 @@ function TodoList() {
 
   const handleToggleComplete = useCallback((uuid: string) => {
     setTodo((prevTodo) =>
-      prevTodo.map((item) =>
-        item.uuid === uuid ? { ...item, completed: !item.status } : item
+      prevTodo.map((item: ITask) =>
+        item.uuid === uuid ? { ...item, status: !item.status } : item
       )
     );
   }, []);

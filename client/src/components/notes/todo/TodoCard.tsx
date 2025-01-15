@@ -15,14 +15,14 @@ function TodoCard({ item, onClick }: TodoCardProps) {
         <input
           type="checkbox"
           id={`todo-${item.uuid}`}
-          checked={item.completed}
+          checked={item.status}
           onChange={() => onClick(item.uuid)}
           className="mr-2"
         />
         <label
           htmlFor={`todo-${item.uuid}`}
           className={
-            item.completed ? "line-through text-gray-500" : "text-black"
+            item.status ? "line-through text-gray-500" : "text-black"
           }
         >
           {item.text}
