@@ -1,6 +1,8 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
+
+import { TodoContext } from "@/context";
 
 import { Button } from "@/shared/components/ui/button";
 import NoteCardContent from "./NoteCardContent";
@@ -13,6 +15,7 @@ interface INoteCardButton {
 
 function NoteCardButton({ id, title, className="" }: INoteCardButton) {
   const navigate = useNavigate();
+  const { todo, setSelectedTodo } = useContext(TodoContext);
 
   return (
     <React.Fragment>
@@ -24,7 +27,10 @@ function NoteCardButton({ id, title, className="" }: INoteCardButton) {
       </Button>
 
       <Button
-        onClick={() => console.log("desktop onclick")}
+        onClick={() => {
+          const data = todo.find((e) => e.uuid === id) || null;
+          setSelectedTodo(data);
+        }}
         className={clsx("xxs:hidden md:flex", className)}
       >
         <NoteCardContent title={title} />

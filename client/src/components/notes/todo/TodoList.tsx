@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import {
   closestCenter,
   DndContext,
@@ -12,17 +12,26 @@ import {
 } from "@dnd-kit/sortable";
 
 import useDndSensors from "@/hooks/useDndSensor";
-import { taskData } from "@/shared/constants/data/taskData";
+import { tasksData } from "@/shared/constants/data/taskData";
 
 import TodoCard from "./TodoCard";
 import { CardContent } from "@/shared/components/ui/card";
+import { TodoContext } from "@/context";
+import { ITask } from "@/types/task";
 
 function TodoList() {
   const sensors = useDndSensors({ delay: 250, tolerance: 5 });
+  const { selectedTodo } = useContext(TodoContext);
+
+
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [todo, setTodo] = useState(
-    taskData.map((item) => ({ ...item, uuid: String(item.uuid) }))
-  );
+  const [todo, setTodo] = useState<ITask[]>([]);
+
+
+  useEffect(() => {
+    const taskList = tasksData.filter((e) => e.todoUuid === selectedTodo?.uuid);
+    setTodo(taskList)
+  }, [selectedTodo]);
 
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id as string);
@@ -45,7 +54,7 @@ function TodoList() {
   const handleToggleComplete = useCallback((uuid: string) => {
     setTodo((prevTodo) =>
       prevTodo.map((item) =>
-        item.uuid === uuid ? { ...item, completed: !item.completed } : item
+        item.uuid === uuid ? { ...item, completed: !item.status } : item
       )
     );
   }, []);
