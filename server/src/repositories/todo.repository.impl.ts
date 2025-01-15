@@ -1,6 +1,6 @@
-import { Kysely, Selectable } from "kysely";
-import { DB, Todo } from "@definitions/db/schema.type";
-import { NewTodo, UpdateTodo } from "@definitions/db/table.type";
+import { Kysely } from "kysely";
+import { DB } from "@definitions/db/schema.type";
+import { NewTodo, SelectTodo, UpdateTodo } from "@definitions/db/table.type";
 
 import ITodoRepository from "../types/repositories/todo.repository";
 
@@ -27,13 +27,17 @@ class TodoRepositoryImpl implements ITodoRepository {
     await this.database.deleteFrom("todo").where("uuid", "=", id).execute();
   };
 
-  public findById = async (id: string): Promise<Selectable<Todo> | null> => {
+  public findById = async (id: string): Promise<SelectTodo | null> => {
     const result = await this.database
       .selectFrom("todo")
       .selectAll()
       .where("uuid", "=", id)
       .executeTakeFirst();
     return result || null;
+  };
+
+  public findAll = async (): Promise<SelectTodo[]> => {
+    return await this.database.selectFrom("todo").selectAll().execute();
   };
 }
 

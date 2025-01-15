@@ -28,6 +28,10 @@ class TodoServiceImpl implements ITodoService {
     const result = await this.repository.findById(id);
     return result;
   };
+
+  public findAll = async (): Promise<SelectTodo[]> => {
+    return await this.repository.findAll();
+  };
 }
 
 export default TodoServiceImpl;
