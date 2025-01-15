@@ -5,12 +5,6 @@ import {
   DragEndEvent,
   DragOverlay,
   DragStartEvent,
-  KeyboardSensor,
-  MouseSensor,
-  PointerSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
 } from "@dnd-kit/core";
 
 import NoteCard from "@/components/notes/note-card/NoteCard";
@@ -22,28 +16,12 @@ import {
 } from "@dnd-kit/sortable";
 import NoteList from "@/components/notes/NoteList";
 import NotePreview from "@/components/notes/NotePreview";
+import useDndSensors from "@/hooks/useDndSensor";
 
 function Notes() {
+  const sensors = useDndSensors({ delay: 250, tolerance: 5 });
   const [items, setItems] = useState(["1", "2", "3", "4", "5"]);
   const [activeId, setActiveId] = useState<string | null>(null);
-
-  const pointerSensor = useSensor(PointerSensor, {
-    activationConstraint: {
-      delay: 250,
-      tolerance: 5,
-    },
-  });
-
-  const mouseSensor = useSensor(MouseSensor);
-  const touchSensor = useSensor(TouchSensor);
-  const keyboardSensor = useSensor(KeyboardSensor);
-
-  const sensors = useSensors(
-    mouseSensor,
-    touchSensor,
-    keyboardSensor,
-    pointerSensor
-  );
 
   function handleDragStart(event: DragStartEvent) {
     setActiveId(event.active.id as string);
