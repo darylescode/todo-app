@@ -18,6 +18,7 @@ import { TodoContext } from "@/context";
 import NoteList from "@/components/notes/NoteList";
 import NotePreview from "@/components/notes/NotePreview";
 import NoteCard from "@/components/notes/note-card/NoteCard";
+import NotePreviewSidebar from "@/components/notes/NotePreviewSidebar";
 
 function Notes() {
   const sensors = useDndSensors({ delay: 250, tolerance: 5 });
@@ -68,6 +69,7 @@ function Notes() {
             activeId={activeId}
           />
           <NotePreview />
+          <NotePreviewSidebar />
         </div>
       </SortableContext>
 
