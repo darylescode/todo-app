@@ -24,7 +24,7 @@ function CreateNoteModal({ isModalOpen, onCancel }: ICreateNoteModalProps) {
         updated_at: new Date(),
       },
     ]);
-
+    setTitle("");
     onCancel();
   };
 
