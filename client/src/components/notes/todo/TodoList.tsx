@@ -20,7 +20,7 @@ import { tasksData } from "@/shared/constants/data/taskData";
 import TodoCard from "./TodoCard";
 import { CardContent } from "@/shared/components/ui/card";
 
-function TodoList() {
+function TodoList({ id }: { id?: string }) {
   const sensors = useDndSensors({ delay: 250, tolerance: 5 });
   const { selectedTodo } = useContext(TodoContext);
 
@@ -28,9 +28,12 @@ function TodoList() {
   const [todo, setTodo] = useState<ITask[]>([]);
 
   useEffect(() => {
-    const taskList = tasksData.filter((e) => e.todoUuid === selectedTodo?.uuid);
-    setTodo(taskList)
-  }, [selectedTodo]);
+    const taskList = tasksData.filter(
+      (e) => e.todoUuid === selectedTodo?.uuid || e.todoUuid === id
+    );
+
+    setTodo(taskList);
+  }, [selectedTodo, id]);
 
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id as string);
