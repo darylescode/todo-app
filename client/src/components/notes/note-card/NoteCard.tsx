@@ -34,6 +34,12 @@ function NoteCard({ todo, className }: NoteCardProps) {
         title={todo.title}
       />
     ),
+    removeComponent: (
+      <NoteCardContent
+        id={todo.uuid}
+        title={todo.title}
+      />
+    ),
   });
 
   return (

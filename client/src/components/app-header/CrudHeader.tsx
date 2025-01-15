@@ -28,7 +28,7 @@ function CrudHeader() {
       return;
     }
 
-    console.log("remove");
+    setHeaderTriggered(HeaderTriggered.remove);
   };
 
   return (

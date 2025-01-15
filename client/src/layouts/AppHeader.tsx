@@ -4,10 +4,15 @@ import { AppHeaderContext, HeaderTriggered } from "@/context";
 
 import CrudHeader from "@/components/app-header/CrudHeader";
 import ActionHeader from "@/components/app-header/ActionHeader";
+import { Button } from "@/shared/components/ui/button";
 import { generateHeaderComponents } from "@/shared/utils/generateHeaderComponents";
 
 function AppHeader() {
   const { headerTriggered, setHeaderTriggered } = useContext(AppHeaderContext);
+
+  const cancelHandler = () => {
+    setHeaderTriggered(HeaderTriggered.create);
+  };
 
   const components = generateHeaderComponents({
     createComponent: <CrudHeader />,
@@ -15,17 +20,20 @@ function AppHeader() {
       <ActionHeader
         actionText="Save"
         onAction={() => {
-          setHeaderTriggered(HeaderTriggered.create)
+          setHeaderTriggered(HeaderTriggered.edit);
         }}
       />
     ),
     removeComponent: (
-      <ActionHeader
-        actionText="Remove"
-        onAction={() => {
-          console.log("Remove action triggered");
-        }}
-      />
+      <div className="flex items-center justify-between w-auto mr-4">
+        <Button
+          onClick={cancelHandler}
+          variant="ghost"
+          className="text-td-blue cursor-pointer"
+        >
+          Done
+        </Button>
+      </div>
     ),
   });
 
