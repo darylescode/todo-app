@@ -9,4 +9,6 @@ export interface ITodo {
 export interface ITodoContext {
   todo: ITodo[];
   setTodo: React.Dispatch<React.SetStateAction<ITodo[]>>;
+  selectedTodo: ITodo | null;
+  setSelectedTodo: React.Dispatch<React.SetStateAction<ITodo | null>>;
 }
