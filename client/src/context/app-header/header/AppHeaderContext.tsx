@@ -8,7 +8,7 @@ export enum HeaderTriggered {
 
 interface IAppHeaderContextProps {
   headerTriggered: HeaderTriggered;
-  setHeaderTriggered: (value: HeaderTriggered) => void;
+  setHeaderTriggered: React.Dispatch<React.SetStateAction<HeaderTriggered>>;
 }
 
 export const AppHeaderContext = createContext<IAppHeaderContextProps>({

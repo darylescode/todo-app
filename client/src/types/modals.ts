@@ -3,6 +3,6 @@ export interface IBaseModalProps {
 }
 
 export interface ConfirmationModalContextProps extends IBaseModalProps {
-  setIsModalOpen: (isOpen: boolean) => void;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
