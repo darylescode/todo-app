@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router";
 
 import MainLayout from "@/layouts/MainLayout";
-import NoteList from "@/components/notes/NoteList";
 import NotePreview from "@/components/notes/NotePreview";
+import Notes from "./pages/Notes";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       >
         <Route
           index
-          element={<NoteList />}
+          element={<Notes />}
         />
         <Route
           path=":id"

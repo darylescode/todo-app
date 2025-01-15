@@ -30,7 +30,7 @@ function AppHeader() {
   });
 
   return (
-    <div className="border-b border-gray-200 py-4 flex space-between justify-between items-center flex-1">
+    <div className="border-b border-gray-200 py-4 flex space-between justify-between items-center flex-1 sticky top-0 bg-white z-10">
       <h1 className="text-2xl font-semibold ml-4">Notes</h1>
       {components[headerTriggered] || null}
     </div>

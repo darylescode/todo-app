@@ -8,7 +8,7 @@ function NotePreview() {
   const id = params?.id || "";
 
   return (
-    <Card className="m-4">
+    <Card className="m-4 sticky top-24 h-64">
       <NoteTitle text={`Note ${id}`} />
       <CardContent className="px-3 pt-3 pb-6 text-left whitespace-pre-wrap">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
