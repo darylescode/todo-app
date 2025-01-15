@@ -7,29 +7,37 @@ import { generateHeaderComponents } from "@/shared/utils/generateHeaderComponent
 import MoveWrapper from "@/shared/components/MoveWrapper";
 import NoteCardButton from "./NoteCardButton";
 import NoteCardContent from "./NoteCardContent";
+import { ITodo } from "@/types/todo";
 
 interface NoteCardProps {
-  id: string;
+  todo: ITodo;
   className?: string;
 }
 
-function NoteCard({ id, className }: NoteCardProps) {
+function NoteCard({ todo, className }: NoteCardProps) {
   const { headerTriggered } = useContext(AppHeaderContext);
 
   const components = generateHeaderComponents({
     createComponent: (
       <NoteCardButton
-        id={id}
+        id={todo.uuid}
+        title={todo.title}
         className={clsx(
           "w-full h-full items-stretch bg-white hover:bg-gray-100",
           className
         )}
       />
     ),
-    editComponent: <NoteCardContent id={id} />,
+    editComponent: (
+      <NoteCardContent
+        title={todo.title}
+      />
+    ),
   });
 
-  return <MoveWrapper id={id}>{components[headerTriggered]}</MoveWrapper>;
+  return (
+    <MoveWrapper id={todo.uuid}>{components[headerTriggered]}</MoveWrapper>
+  );
 }
 
 export default NoteCard;

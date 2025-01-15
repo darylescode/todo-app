@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   closestCenter,
   DndContext,
@@ -7,20 +7,22 @@ import {
   DragStartEvent,
 } from "@dnd-kit/core";
 
-import NoteCard from "@/components/notes/note-card/NoteCard";
-
 import {
   arrayMove,
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import useDndSensors from "@/hooks/useDndSensor";
+import { TodoContext } from "@/context";
+
 import NoteList from "@/components/notes/NoteList";
 import NotePreview from "@/components/notes/NotePreview";
-import useDndSensors from "@/hooks/useDndSensor";
+import NoteCard from "@/components/notes/note-card/NoteCard";
 
 function Notes() {
   const sensors = useDndSensors({ delay: 250, tolerance: 5 });
-  const [items, setItems] = useState(["1", "2", "3", "4", "5"]);
+  const { todo, setTodo } = useContext(TodoContext);
+
   const [activeId, setActiveId] = useState<string | null>(null);
 
   function handleDragStart(event: DragStartEvent) {
@@ -32,9 +34,9 @@ function Notes() {
     if (!over) return;
 
     if (active.id !== over.id) {
-      setItems((oldItems) => {
-        const oldIndex = oldItems.indexOf(active.id as string);
-        const newIndex = oldItems.indexOf(over.id as string);
+      setTodo((oldItems) => {
+        const oldIndex = oldItems.findIndex((item) => item.uuid === active.id);
+        const newIndex = oldItems.findIndex((item) => item.uuid === over.id);
         return arrayMove(oldItems, oldIndex, newIndex);
       });
     }
@@ -49,25 +51,31 @@ function Notes() {
       onDragEnd={handleDragEnd}
     >
       <SortableContext
-        items={items}
+        items={todo.map((item) => item.uuid)}
         strategy={verticalListSortingStrategy}
       >
+        {/* mobile view */}
         <div className="xss:block md:hidden">
           <NoteList
-            items={items}
+            items={todo}
             activeId={activeId}
           />
         </div>
+        {/* desktop view */}
         <div className="xss:hidden md:flex flex-1 overscroll-y-auto">
           <NoteList
-            items={items}
+            items={todo}
             activeId={activeId}
           />
           <NotePreview />
         </div>
       </SortableContext>
 
-      <DragOverlay>{activeId ? <NoteCard id={activeId} /> : null}</DragOverlay>
+      <DragOverlay>
+        {activeId ? (
+          <NoteCard todo={todo.find((e) => e.uuid === activeId)!} />
+        ) : null}
+      </DragOverlay>
     </DndContext>
   );
 }

@@ -6,33 +6,28 @@ import { Button } from "@/shared/components/ui/button";
 import NoteCardContent from "./NoteCardContent";
 
 interface INoteCardButton {
-  id: string | number;
+  id: string;
+  title: string;
   className?: string;
 }
 
-function NoteCardButton({ id, className="" }: INoteCardButton) {
+function NoteCardButton({ id, title, className="" }: INoteCardButton) {
   const navigate = useNavigate();
 
   return (
     <React.Fragment>
       <Button
         onClick={() => navigate(`/${id}`)}
-        className={clsx(
-          "xxs:flex md:hidden",
-          className
-        )}
+        className={clsx("xxs:flex md:hidden", className)}
       >
-        <NoteCardContent id={id} />
+        <NoteCardContent title={title} />
       </Button>
 
       <Button
         onClick={() => console.log("desktop onclick")}
-        className={clsx(
-          "xxs:hidden md:flex",
-          className
-        )}
+        className={clsx("xxs:hidden md:flex", className)}
       >
-        <NoteCardContent id={id} />
+        <NoteCardContent title={title} />
       </Button>
     </React.Fragment>
   );
