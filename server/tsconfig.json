@@ -1,22 +1,25 @@
 {
   "compilerOptions": {
+    "strict": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "baseUrl": "./",
     "paths": {
       "@services/*": ["src/services/*"],
       "@repositories/*": ["src/repositories/*"],
       "@controllers/*": ["src/controllers/*"],
       "@routers/*": ["src/routers/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@definitions/*": ["src/types/*"]
     }
   },
-  "include": ["src"],
+  "include": ["./src"],
   "exclude": ["node_modules", "dist"]
 }
