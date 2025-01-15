@@ -3,8 +3,14 @@
  * Please do not edit it manually.
  */
 
+import { ColumnType } from "kysely";
+
+export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>;
+
 export interface Task {
-  uuid: string;
+  uuid: Generated<string>;
   todo_uuid: string;
   position: number;
   status: number;
@@ -18,7 +24,7 @@ export interface Todo {
   position: number;
   title: string;
   updated_at: Date | null;
-  uuid: string;
+  uuid: Generated<string>;
 }
 
 export interface DB {

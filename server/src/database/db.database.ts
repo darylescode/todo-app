@@ -1,5 +1,5 @@
 import * as dotenv              from "dotenv";
-import { type DB }              from "@definitions/schema.type";
+import { type DB }              from "@definitions/db/schema.type";
 import { createPool, }          from "mysql2";
 import { Kysely, MysqlDialect } from "kysely";
 dotenv.config();
