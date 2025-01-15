@@ -36,18 +36,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const body_parser_1 = __importDefault(require("body-parser"));
-const dotenv = __importStar(require("dotenv"));
-const todo_router_1 = __importDefault(require("./routers/todo.router"));
-const task_router_1 = __importDefault(require("./routers/task.router"));
-const cors_option_1 = __importDefault(require("./config/cors-option"));
-dotenv.config();
-const app = (0, express_1.default)();
-app.use(body_parser_1.default.json());
-app.use((0, cors_1.default)(cors_option_1.default));
-app.use("/todo", todo_router_1.default);
-app.use("/task", task_router_1.default);
-exports.default = app;
-//# sourceMappingURL=app.js.map
+const db_database_1 = __importDefault(require("./db.database"));
+const kysely_migration_cli_1 = require("kysely-migration-cli");
+const path = __importStar(require("path"));
+const fs_1 = require("fs");
+const kysely_1 = require("kysely");
+const migrationFolder = path.join(process.cwd(), "src/database/migrations");
+const migrator = new kysely_1.Migrator({
+    db: db_database_1.default,
+    provider: new kysely_1.FileMigrationProvider({
+        fs: fs_1.promises,
+        path,
+        migrationFolder: migrationFolder,
+    }),
+});
+(0, kysely_migration_cli_1.run)(db_database_1.default, migrator, migrationFolder);
+//# sourceMappingURL=migrator.database.js.map

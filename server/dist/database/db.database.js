@@ -32,22 +32,21 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const body_parser_1 = __importDefault(require("body-parser"));
+exports.pool = void 0;
 const dotenv = __importStar(require("dotenv"));
-const todo_router_1 = __importDefault(require("./routers/todo.router"));
-const task_router_1 = __importDefault(require("./routers/task.router"));
-const cors_option_1 = __importDefault(require("./config/cors-option"));
+const mysql2_1 = require("mysql2");
+const kysely_1 = require("kysely");
 dotenv.config();
-const app = (0, express_1.default)();
-app.use(body_parser_1.default.json());
-app.use((0, cors_1.default)(cors_option_1.default));
-app.use("/todo", todo_router_1.default);
-app.use("/task", task_router_1.default);
-exports.default = app;
-//# sourceMappingURL=app.js.map
+exports.pool = (0, mysql2_1.createPool)({
+    database: `${process.env.DATABASE}`,
+    host: `${process.env.DATABASE_HOST}`,
+    port: process.env.DATABASE_PORT,
+    user: `${process.env.USER}`,
+    password: process.env.PASSWORD,
+    multipleStatements: true,
+});
+const dialect = new kysely_1.MysqlDialect({ pool: exports.pool });
+const db = new kysely_1.Kysely({ dialect });
+exports.default = db;
+//# sourceMappingURL=db.database.js.map
