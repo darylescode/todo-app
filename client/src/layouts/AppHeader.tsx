@@ -6,6 +6,7 @@ import CrudHeader from "@/components/app-header/CrudHeader";
 import ActionHeader from "@/components/app-header/ActionHeader";
 import { Button } from "@/shared/components/ui/button";
 import { generateHeaderComponents } from "@/shared/utils/generateHeaderComponents";
+import HeaderName from "@/components/app-header/HeaderName";
 
 function AppHeader() {
   const { headerTriggered, setHeaderTriggered } = useContext(AppHeaderContext);
@@ -39,7 +40,7 @@ function AppHeader() {
 
   return (
     <div className="border-b border-gray-200 py-4 flex space-between justify-between items-center flex-1 sticky top-0 bg-white z-10">
-      <h1 className="text-2xl font-semibold ml-4">Notes</h1>
+      <HeaderName />
       {components[headerTriggered] || null}
     </div>
   );
