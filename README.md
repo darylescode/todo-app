@@ -10,6 +10,7 @@ A simple and intuitive todo app for creating, managing, and tracking your daily 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
+- [Remarks & Next Steps](#remarks--next-steps)
 
 ---
 
@@ -120,3 +121,17 @@ The project is divided into two main parts: the client and the server. Below is 
 ├── .gitignore                # Specifies files to be ignored by Git
 ├── README.md                 # Project documentation
 ```
+---
+
+## Remarks & Next Steps
+
+The application successfully implements some of the features outlined in the take-home project. While the APIs have been created, integration for functionalities like adding and deleting tasks is not yet complete.
+
+Currently, the application allows users to perform the following actions seamlessly:
+
+- Drag-and-drop item cards within the application.
+- Create, edit, and delete cards.
+
+If given more time, I would focus on persisting the data, including the position of cards when they are moved, by integrating the existing APIs.
+
+This concludes the current progress. Thank you for the opportunity to demonstrate my knowledge and skills.
